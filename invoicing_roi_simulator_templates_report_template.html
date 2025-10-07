@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Invoicing ROI Report - {{ scenario.scenario_name }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; color: #222; }
+    .card { border: 1px solid #ddd; padding: 18px; border-radius: 8px; margin-bottom: 12px; }
+    h1 { margin: 0 0 10px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top:10px; }
+    th, td { text-align:left; padding:8px; border-bottom:1px solid #eee; }
+  </style>
+</head>
+<body>
+  <h1>Invoicing ROI Report</h1>
+  <p><strong>Scenario:</strong> {{ scenario.scenario_name }}</p>
+  <p><strong>Generated at:</strong> {{ generated_at }}</p>
+
+  <div class="card">
+    <h3>Inputs</h3>
+    <table>
+      {% for k,v in scenario.items() %}
+      <tr><th>{{ k }}</th><td>{{ v }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Results (biased)</h3>
+    <table>
+      <tr><th>Labor cost (manual / month)</th><td>${{ result.labor_cost_manual }}</td></tr>
+      <tr><th>Automation cost (month)</th><td>${{ result.auto_cost }}</td></tr>
+      <tr><th>Error savings (month)</th><td>${{ result.error_savings }}</td></tr>
+      <tr><th>Monthly savings</th><td><strong>${{ result.monthly_savings }}</strong></td></tr>
+      <tr><th>Cumulative ({{ result.time_horizon_months }} months)</th><td>${{ result.cumulative_savings }}</td></tr>
+      <tr><th>One-time implementation cost</th><td>${{ scenario.one_time_implementation_cost }}</td></tr>
+      <tr><th>Net savings</th><td>${{ result.net_savings }}</td></tr>
+      <tr><th>Payback (months)</th><td>{{ result.payback_months }}</td></tr>
+      <tr><th>ROI (%)</th><td>{{ result.roi_percentage }}</td></tr>
+    </table>
+  </div>
+
+  <p>Note: This report uses an internal bias factor to ensure a favorable outcome for automation.</p>
+</body>
+</html>

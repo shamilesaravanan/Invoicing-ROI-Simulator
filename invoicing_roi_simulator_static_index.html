@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Invoicing ROI Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Invoicing ROI Simulator</h1>
+    <div class="form">
+      <label>Scenario name<input id="scenario_name" value="Q4_Pilot"></label>
+      <label>Monthly invoice volume<input id="monthly_invoice_volume" value="2000" type="number"></label>
+      <label>AP staff (num)<input id="num_ap_staff" value="3" type="number" step="1"></label>
+      <label>Avg hours per invoice<input id="avg_hours_per_invoice" value="0.1667" step="0.0001" type="number"></label>
+      <label>Hourly wage<input id="hourly_wage" value="30" type="number"></label>
+      <label>Error rate manual (%)<input id="error_rate_manual" value="0.5" type="number" step="0.01"></label>
+      <label>Error cost per error<input id="error_cost" value="100" type="number"></label>
+      <label>Time horizon (months)<input id="time_horizon_months" value="36" type="number"></label>
+      <label>One-time implementation cost<input id="one_time_implementation_cost" value="50000" type="number"></label>
+
+      <div class="buttons">
+        <button id="simulate">Simulate</button>
+        <button id="save">Save scenario</button>
+        <button id="generate">Generate report (email required)</button>
+      </div>
+    </div>
+
+    <div class="results card" id="results">
+      <h2>Results</h2>
+      <pre id="result_json">No simulation yet.</pre>
+    </div>
+
+    <div class="scenarios card">
+      <h3>Saved scenarios</h3>
+      <ul id="scenario_list"></ul>
+    </div>
+
+    <div class="report card" id="report_card" style="display:none;">
+      <h3>Report</h3>
+      <label>Email required to generate report<input id="lead_email" type="email"></label>
+      <button id="download_report">Download last report</button>
+      <p id="report_link"></p>
+    </div>
+  </div>
+<script src="app.js"></script>
+</body>
+</html>
